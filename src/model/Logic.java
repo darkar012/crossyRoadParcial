@@ -48,7 +48,12 @@ public class Logic extends PApplet{
 		month = app.month();
 		year = app.year();
 		
-		readTXT();
+		try {
+			readTXT();
+		} catch (Exception runtimeException) {
+			// TODO: handle exception
+		}
+		
 		dateHourPreset();
 	}	
 	
