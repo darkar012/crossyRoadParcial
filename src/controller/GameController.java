@@ -1,9 +1,20 @@
 package controller;
 
+import model.Logic;
+import processing.core.PApplet;
+
 public class GameController {
 
-	public GameController() {
-		// TODO Auto-generated constructor stub
+	private Logic logic;
+	private PApplet app;
+	
+	public GameController(PApplet app) {
+		this.app = app;
+		logic= new Logic(app);
 	}
-
+	
+	public void paintGame() {
+		logic.paintGame();
+	}
+	
 }
