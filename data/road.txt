@@ -1,0 +1,6 @@
+Tipo objeto, dirección movimiento, posX, posY
+carro,2,100,200
+carro,-3,500,400
+carro,-2,500,200
+carro,1,100,400
+personaje,0,400,20
