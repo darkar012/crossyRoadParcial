@@ -208,17 +208,18 @@ public class Logic extends PApplet{
 		} catch (Win e) {
 			change=2;
 			win =true;
-			newGame();
+			
 		} catch (Lost e) {
 			change=3;
 			lose = true;
-			newGame();
+			
 		}
 		
 	}
 	
 	public void winLostValidation() throws Win, Lost {
-		if (hero.getPosY() >= 556) {
+		if (hero.getPosY() >= 530) {
+			newGame();
 			throw new Win("ganaste");
 		}
 		for (int i = 0; i < carList.size(); i++) {
@@ -229,6 +230,7 @@ public class Logic extends PApplet{
 			int carY = carList.get(i).getPosY();
 			
 			if (app.dist(heroX, heroY, carX, carY) <= hero.getSize()) {
+				newGame();
 				throw new Lost ("perdiste");
 			}
 		}
@@ -286,7 +288,6 @@ public class Logic extends PApplet{
 		
 		road = app.loadStrings("../data/road.txt");
 		carList=new ArrayList<Car>();
-		gameList = new LinkedList<Game>();
 		change =1;
 		win=false;
 		lose = false;
@@ -295,7 +296,6 @@ public class Logic extends PApplet{
 		year = app.year();
 		
 		readTXT();
-		dateHourPreset();
 		
 	}
 
