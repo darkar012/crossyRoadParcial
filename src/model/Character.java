@@ -8,12 +8,14 @@ public abstract class Character extends PApplet {
 	protected int posX;
 	protected int posY;
 	protected int speed;
+	protected int key;
 
 	public Character (int posX, int posY, int speed, PApplet app){
 		this.posX=posX;
 		this.posY=posY;
 		this.speed=speed;
 		this.app=app;
+		
 	}
 	
 	public abstract void moveChar();
@@ -49,6 +51,14 @@ public abstract class Character extends PApplet {
 
 	public void setSpeed(int speed) {
 		this.speed = speed;
+	}
+
+	public int getKey() {
+		return key;
+	}
+
+	public void setKey(int key) {
+		this.key = key;
 	}
 	
 	

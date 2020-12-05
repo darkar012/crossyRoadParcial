@@ -2,7 +2,7 @@ package model;
 
 import processing.core.PApplet;
 
-public class Car extends Character {
+public class Car extends Character implements Runnable {
 
 	public Car(int posX, int posY, int speed, PApplet app) {
 		super(posX, posY, speed, app);
@@ -26,10 +26,15 @@ public class Car extends Character {
 		 }
 	}
 
-	@Override
 	public void paintChar() {
 		app.fill(255,0,0);
+		app.rectMode(CENTER);
 		app.rect(posX, posY, 70, 40);
+	}
+
+	@Override
+	public void run() {
+		moveChar();
 	}
 
 }

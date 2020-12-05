@@ -16,5 +16,16 @@ public class GameController {
 	public void paintGame() {
 		logic.paintGame();
 	}
+	public void key(int key) {
+		logic.key(key);
+	}
+	
+	public void paintRegister() {
+		logic.paintRegister();
+	}
+	
+	public int getChange() {
+		return logic.getChange();
+	}
 	
 }
