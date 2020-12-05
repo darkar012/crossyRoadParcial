@@ -4,6 +4,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.LinkedList;
 
@@ -18,6 +19,8 @@ public class Logic extends PApplet{
 	private String[] road;
 	private ArrayList<Car> carList;  
 	private LinkedList<Game>gameList;
+	private ByDateComparator BD;
+	private ByHour BH;
 	private int posY;
 	private int change;
 	private int day;
@@ -36,6 +39,8 @@ public class Logic extends PApplet{
 		road = app.loadStrings("../data/road.txt");
 		carList=new ArrayList<Car>();
 		gameList = new LinkedList<Game>();
+		BD = new ByDateComparator();
+		BH = new ByHour();
 		change =1;
 		win=false;
 		lose = false;
@@ -48,7 +53,7 @@ public class Logic extends PApplet{
 	}	
 	
 	public void dateHourPreset() {
-		String dateString = 15+"-"+11+"-"+2020;
+		String dateString = 15+"-"+11+"-"+2021;
 		DateFormat format = new SimpleDateFormat("dd-MM-yyyy");
 		Date datePreset= null;
 		
@@ -72,7 +77,7 @@ public class Logic extends PApplet{
 				System.out.println(ex);
 			}
 		 
-		gameList.add(new Game(200, datePreset, durationPreset , hourPreset,app));
+		gameList.add(new Game(datePreset, durationPreset , hourPreset,this.app));
 	}
 	
 	public void newGame() {
@@ -91,10 +96,8 @@ public class Logic extends PApplet{
 		 Date date2 = new Date();
 		  //System.out.println(dateFormat.format(date2));
 			
-		int size = gameList.size();
-		for (int i = 0; i < size; i++) {
-			 gameList.add(new Game(gameList.get(i).getPosY()+20, date, duration , date2, app));
-		}
+	
+			 gameList.add(new Game(date, duration , date2, this.app));
 		
 	}
 	
@@ -203,15 +206,7 @@ public class Logic extends PApplet{
 		try {
 			winLostValidation();
 		} catch (Win e) {
-			app.fill(0, 255, 158);
-			app.rect(100, 100, 1800, 1600);
-			app.fill(0);
-			app.textSize(35);
-			app.text("Has Ganado", 200, 200);
-			app.textSize(20);
-			app.text("Presiona R para reiniciar", 200, 400);
-			app.text("Presiona E para salir", 200, 450);
-			app.text("Presiona D para ver otras partidas", 200, 500);
+			change=2;
 			win =true;
 			newGame();
 		} catch (Lost e) {
@@ -242,13 +237,14 @@ public class Logic extends PApplet{
 	
 	public void paintRegister() {
 		for (int i = 0; i < gameList.size() ; i++) {
-			gameList.get(i).writeGame(app);
+			gameList.get(i).writeGame(300+(30*i));
 		}
 	}
 	
 	public void key(int key) {
 		hero.setKey(key);
 		hero.moveChar();
+		
 		if (win == true || lose == true) {
 			if (key==69) {
 				app.exit();
@@ -259,9 +255,33 @@ public class Logic extends PApplet{
 			if (key == 68) {
 				change = 4;
 			}
+			
+			sortList(key);
 		}
+		
 	}
 	
+	private void sortList(int key) {
+		switch (key) {
+		
+		case 71: {
+			Collections.sort(gameList);
+		}
+		break;
+		case 70: {
+			Collections.sort(gameList,BD);
+		}
+		break;
+		case 72: {
+			Collections.sort(gameList,BH);
+		}
+		break;
+		default:
+		
+		}
+		
+	}
+
 	public void restart() {
 		
 		road = app.loadStrings("../data/road.txt");

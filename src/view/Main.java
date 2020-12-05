@@ -42,6 +42,18 @@ public class Main extends PApplet{
 			
 		}
 		break;
+		case 2: {
+			fill(0, 255, 158);
+			rect(100, 100, 1800, 1600);
+			fill(0);
+			textSize(35);
+			text("Has Ganado", 200, 200);
+			textSize(20);
+			text("Presiona R para reiniciar", 200, 400);
+			text("Presiona E para salir", 200, 450);
+			text("Presiona D para ver otras partidas", 200, 500);
+		}
+		break;
 		case 3: {
 			fill(255, 0, 0);
 			rect(100, 100, 1800, 1600);
@@ -55,7 +67,16 @@ public class Main extends PApplet{
 		}
 		break;
 		case 4: {
-			//app.text("lastGames", x, y);
+			text("Last Games Durations", 300, 100);
+			text ("presiona H para ordenar por hora",100,130);
+			text ("presiona F para ordenar por fecha",100,155);
+			text ("presiona G para ordenar por duración",100,180);
+			text("presiona R para reiniciar",470,130);
+			text("presiona E para salir",495,155);
+			text("Fecha",230,250);
+			text("Hora",345,250);
+			text("Duración",450,250);
+			//System.out.println("2");
 			game.paintRegister();
 		}
 		}
@@ -66,9 +87,4 @@ public class Main extends PApplet{
 		int key = keyCode;
 		game.key(key);
 	}
-	
-	public void keyReleased() {
-		int key = keyCode;
-	}
-
 }

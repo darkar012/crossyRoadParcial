@@ -6,22 +6,21 @@ import java.util.Date;
 
 import processing.core.PApplet;
 
-public class Game extends PApplet{
+public class Game extends PApplet implements Comparable<Game>{
 	
 	private Date date;
 	private Date duration;
 	private Date hour;
 	private PApplet app;
-	private int posY;
 	
-	public Game(int posY, Date date, Date durationPreset, Date hour,PApplet app) {
-		this.posY = posY;
+	public Game(Date date, Date durationPreset, Date hour,PApplet app) {
+		this.app = app;
 		this.date = date;
 		this.duration = durationPreset;
 		this.hour= hour;
 	}
 	
-	public void writeGame(PApplet app) {
+	public void writeGame(int posY) {
 		SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
 		String date = format.format(this.date);
 		app.fill(0);
@@ -36,13 +35,43 @@ public class Game extends PApplet{
 		String duration = durationformat.format(this.duration);
 		app.text(duration, 450 , posY);
 	}
+	
 
-	public int getPosY() {
-		return posY;
+	public int compareTo(Game nextGame) {
+		// TODO Auto-generated method stub
+		return this.duration.compareTo(nextGame.getDuration()); 
 	}
 
-	public void setPosY(int posY) {
-		this.posY = posY;
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
+	}
+
+	public Date getDuration() {
+		return duration;
+	}
+
+	public void setDuration(Date duration) {
+		this.duration = duration;
+	}
+
+	public Date getHour() {
+		return hour;
+	}
+
+	public void setHour(Date hour) {
+		this.hour = hour;
+	}
+
+	public PApplet getApp() {
+		return app;
+	}
+
+	public void setApp(PApplet app) {
+		this.app = app;
 	}
 	
 	
